@@ -84,7 +84,13 @@ app.put("/blogs/:id", function(req, res){
 });
 
 app.delete("/blogs/:id", function(req, res){
-    res.send("You have reached the delete page");
+    Blog.findByIdAndDelete(req.params.id, function(err){
+        if(err){
+            res.redirect("/blogs");
+        } else {
+            res.redirect("/blogs");
+        }
+    });
 });
 
 app.listen(3000, function(){
